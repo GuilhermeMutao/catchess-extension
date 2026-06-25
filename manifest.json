@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Catchess Importer",
+  "version": "1.2",
+  "description": "Imports chess games directly from Chess.com to Catchess for analysis.",
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "192": "icon192.png"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*.chess.com/*"
+  ],
+  "action": {
+    "default_title": "Analyze in Catchess",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "192": "icon192.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.chess.com/*"],
+      "js": ["content_alert.js"],
+      "css": ["content_alert.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["icon32.png", "icon192.png", "siames.png"],
+      "matches": ["*://*.chess.com/*"]
+    }
+  ]
+}

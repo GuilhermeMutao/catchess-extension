@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      width: 320px;
+      margin: 0;
+      padding: 24px;
+      background-color: #120f0d;
+      color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .logo-img {
+      width: 48px;
+      height: 48px;
+    }
+    .logo-text {
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    h2 {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      text-align: left;
+    }
+    p.subtitle {
+      margin: 0 0 20px 0;
+      font-size: 13px;
+      color: #a1a1aa;
+      text-align: left;
+    }
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .option-btn {
+      width: 100%;
+      padding: 14px 16px;
+      background-color: #120f0d;
+      border: 1px solid #333;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .option-btn.selected {
+      border-color: #f97817;
+      color: #f97817;
+      background-color: rgba(249, 120, 23, 0.05);
+    }
+    .actions-container {
+      display: flex;
+      gap: 12px;
+    }
+    .btn-cancel {
+      flex: 1;
+      padding: 12px;
+      background-color: #120f0d;
+      border: 1px solid #333;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .btn-cancel:hover { background-color: #222; }
+    .btn-confirm {
+      flex: 1;
+      padding: 12px;
+      background-color: #f97817;
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-confirm:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="icon192.png" alt="Catchess Logo" class="logo-img" />
+    <span class="logo-text">Catchess.org</span>
+  </div>
+  <h2 id="t-title">Perfil da revisão</h2>
+  <p class="subtitle" id="t-subtitle">Escolha a profundidade da analise Stockfish.</p>
+
+  <div class="options-container">
+    <button class="option-btn" data-profile="fast" id="t-fast">Rapido</button>
+    <button class="option-btn selected" data-profile="balanced" id="t-balanced">Balanceado</button>
+    <button class="option-btn" data-profile="precise" id="t-precise">Maxima precisao</button>
+  </div>
+
+  <div class="actions-container">
+    <button class="btn-cancel" id="t-cancel">Cancelar</button>
+    <button class="btn-confirm" id="t-confirm">Confirmar</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
