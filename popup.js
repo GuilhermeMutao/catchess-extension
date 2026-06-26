@@ -4,9 +4,9 @@ const locales = {
   'pt': {
     title: "Perfil da revisão",
     subtitle: "Escolha a profundidade da analise Stockfish.",
-    fast: "Rapido",
+    fast: "Rápido",
     balanced: "Balanceado",
-    precise: "Maxima precisao",
+    precise: "Máxima precisão",
     cancel: "Cancelar",
     confirm: "Confirmar",
     errorExtraction: "Não foi possível extrair a partida desta página. Certifique-se de estar em uma partida ou análise.",
@@ -17,16 +17,57 @@ const locales = {
     subtitle: "Choose the Stockfish analysis depth.",
     fast: "Fast",
     balanced: "Balanced",
-    precise: "Maximum precision",
+    precise: "Maximum Precision",
     cancel: "Cancel",
     confirm: "Confirm",
     errorExtraction: "Could not extract game from this page. Make sure you are in a game or analysis board.",
     errorTab: "Please open a chess.com game first."
+  },
+  'es': {
+    title: "Perfil de revisión",
+    subtitle: "Elige la profundidad del análisis Stockfish.",
+    fast: "Rápido",
+    balanced: "Equilibrado",
+    precise: "Máxima precisión",
+    cancel: "Cancelar",
+    confirm: "Confirmar",
+    errorExtraction: "No se pudo extraer la partida de esta página. Asegúrate de estar en una partida o tablero de análisis.",
+    errorTab: "Por favor, abre una partida en chess.com primero."
+  },
+  'fr': {
+    title: "Profil d'analyse",
+    subtitle: "Choisissez la profondeur d'analyse Stockfish.",
+    fast: "Rapide",
+    balanced: "Équilibré",
+    precise: "Précision maximale",
+    cancel: "Annuler",
+    confirm: "Confirmer",
+    errorExtraction: "Impossible d'extraire la partie de cette page. Assurez-vous d'être sur une partie ou un tableau d'analyse.",
+    errorTab: "Veuillez d'abord ouvrir une partie sur chess.com."
+  },
+  'de': {
+    title: "Analyseprofil",
+    subtitle: "Wähle die Stockfish-Analysetiefe.",
+    fast: "Schnell",
+    balanced: "Ausgewogen",
+    precise: "Maximale Präzision",
+    cancel: "Abbrechen",
+    confirm: "Bestätigen",
+    errorExtraction: "Das Spiel konnte von dieser Seite nicht extrahiert werden. Stelle sicher, dass du dich auf einer Partie oder Analyseplatte befindest.",
+    errorTab: "Bitte öffne zuerst eine Partie auf chess.com."
   }
 };
 
-const userLang = navigator.language || navigator.userLanguage;
-const lang = userLang.toLowerCase().startsWith('pt') ? 'pt' : 'en';
+function detectLang() {
+  const raw = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  if (raw.startsWith('pt')) return 'pt';
+  if (raw.startsWith('es')) return 'es';
+  if (raw.startsWith('fr')) return 'fr';
+  if (raw.startsWith('de')) return 'de';
+  return 'en';
+}
+
+const lang = detectLang();
 const t = locales[lang];
 
 document.getElementById('t-title').textContent = t.title;

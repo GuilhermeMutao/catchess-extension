@@ -17,9 +17,9 @@
           'pt': {
             title: "Perfil da revisão",
             subtitle: "Escolha a profundidade da analise Stockfish.",
-            fast: "Rapido",
+            fast: "Rápido",
             balanced: "Balanceado",
-            precise: "Maxima precisao",
+            precise: "Máxima precisão",
             cancel: "Cancelar",
             confirm: "Confirmar"
           },
@@ -28,14 +28,49 @@
             subtitle: "Choose the Stockfish analysis depth.",
             fast: "Fast",
             balanced: "Balanced",
-            precise: "Maximum precision",
+            precise: "Maximum Precision",
             cancel: "Cancel",
             confirm: "Confirm"
+          },
+          'es': {
+            title: "Perfil de revisión",
+            subtitle: "Elige la profundidad del análisis Stockfish.",
+            fast: "Rápido",
+            balanced: "Equilibrado",
+            precise: "Máxima precisión",
+            cancel: "Cancelar",
+            confirm: "Confirmar"
+          },
+          'fr': {
+            title: "Profil d'analyse",
+            subtitle: "Choisissez la profondeur d'analyse Stockfish.",
+            fast: "Rapide",
+            balanced: "Équilibré",
+            precise: "Précision maximale",
+            cancel: "Annuler",
+            confirm: "Confirmer"
+          },
+          'de': {
+            title: "Analyseprofil",
+            subtitle: "Wähle die Stockfish-Analysetiefe.",
+            fast: "Schnell",
+            balanced: "Ausgewogen",
+            precise: "Maximale Präzision",
+            cancel: "Abbrechen",
+            confirm: "Bestätigen"
           }
         };
 
-        const userLang = navigator.language || navigator.userLanguage;
-        const lang = userLang.toLowerCase().startsWith('pt') ? 'pt' : 'en';
+        function detectLang() {
+          const raw = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+          if (raw.startsWith('pt')) return 'pt';
+          if (raw.startsWith('es')) return 'es';
+          if (raw.startsWith('fr')) return 'fr';
+          if (raw.startsWith('de')) return 'de';
+          return 'en';
+        }
+
+        const lang = detectLang();
         const t = locales[lang];
         
         container.innerHTML = `
