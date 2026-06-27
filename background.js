@@ -5,18 +5,32 @@ function extractAndOpenCatchess(tab, profile = 'balanced') {
     func: () => {
       try {
         const board = document.querySelector('wc-chess-board') || document.querySelector('chess-board');
+        let pgn = null;
+        let color = 'white';
+
         if (board && board.game && typeof board.game.getPGN === 'function') {
-          const pgn = board.game.getPGN();
-          if (pgn) return pgn;
+          pgn = board.game.getPGN();
         }
         
-        if (window.chesscom && window.chesscom.game && window.chesscom.game.pgn) {
-          return window.chesscom.game.pgn;
+        if (!pgn && window.chesscom && window.chesscom.game && window.chesscom.game.pgn) {
+          pgn = window.chesscom.game.pgn;
         }
 
-        if (window.chesscom && window.chesscom.shareData && window.chesscom.shareData.pgn) {
-          return window.chesscom.shareData.pgn;
+        if (!pgn && window.chesscom && window.chesscom.shareData && window.chesscom.shareData.pgn) {
+          pgn = window.chesscom.shareData.pgn;
         }
+
+        if (board && board.hasAttribute('flip')) {
+            color = 'black';
+        } else if (board && board.className && typeof board.className === 'string' && board.className.includes('flipped')) {
+            color = 'black';
+        } else if (document.querySelector('.board.flipped')) {
+            color = 'black';
+        } else if (window.chesscom && window.chesscom.game && window.chesscom.game.playingAs === 2) {
+            color = 'black';
+        }
+
+        if (pgn) return { pgn, color };
       } catch (e) {
         console.error("Catchess extraction error:", e);
       }
@@ -28,9 +42,12 @@ function extractAndOpenCatchess(tab, profile = 'balanced') {
       return;
     }
     
-    const pgn = results && results[0] && results[0].result;
-    if (pgn) {
-      const catchessUrl = `https://catchess.org/?pgn=${encodeURIComponent(pgn)}&profile=${profile}`;
+    const data = results && results[0] && results[0].result;
+    if (data && data.pgn) {
+      let catchessUrl = `https://catchess.org/?pgn=${encodeURIComponent(data.pgn)}&profile=${profile}`;
+      if (data.color) {
+          catchessUrl += `&color=${data.color}`;
+      }
       chrome.tabs.create({ url: catchessUrl });
     } else {
       chrome.scripting.executeScript({

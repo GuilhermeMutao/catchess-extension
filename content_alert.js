@@ -76,7 +76,7 @@
         container.innerHTML = `
           <button id="catchess-floating-close" title="${t.cancel}">✕</button>
           
-          <div class="logo-container">
+          <div class="logo-container" id="catchess-logo-link" style="cursor: pointer;" title="Abrir Catchess.org">
             <img src="${logoUrl}" alt="Catchess Logo" class="logo-img" />
             <span class="logo-text">Catchess.org</span>
           </div>
@@ -106,10 +106,15 @@
         const closeBtn = container.querySelector('#catchess-floating-close');
         const cancelBtn = container.querySelector('#catchess-btn-cancel');
         const confirmBtn = container.querySelector('#catchess-btn-confirm');
+        const logoLink = container.querySelector('#catchess-logo-link');
 
         const closeAction = () => {
           container.style.display = 'none';
         };
+
+        logoLink.addEventListener('click', () => {
+          window.open('https://catchess.org/', '_blank');
+        });
 
         closeBtn.addEventListener('click', closeAction);
         cancelBtn.addEventListener('click', closeAction);
