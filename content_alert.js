@@ -108,8 +108,12 @@
         const confirmBtn = container.querySelector('#catchess-btn-confirm');
         const logoLink = container.querySelector('#catchess-logo-link');
 
-        const closeAction = () => {
-          container.style.display = 'none';
+        const closeAction = (e) => {
+          if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+          container.style.setProperty('display', 'none', 'important');
         };
 
         logoLink.addEventListener('click', () => {
@@ -126,11 +130,11 @@
         
         document.body.appendChild(container);
       } else {
-        container.style.display = 'block';
+        container.style.setProperty('display', 'flex', 'important');
       }
     } else {
       if (container) {
-        container.style.display = 'none';
+        container.style.setProperty('display', 'none', 'important');
       }
     }
   }
