@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Catchess.org - Free Chess analyzer",
-  "version": "1.5",
+  "version": "1.6",
   "description": "Analyze your Chess.com games instantly without ads or paywalls on Catchess. One click to deep analysis.",
   "icons": {
     "16": "icon16.png",
